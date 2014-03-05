@@ -1,0 +1,17 @@
+{
+    "last_time": 1393974038,
+    "reminders": [
+        {
+            "count": 1,
+            "last_time": 1393974383,
+            "message": "https://github.com/yagop/reminder",
+            "repeat": 60
+        }
+    ],
+    "twitter": {
+        "access_token": "",
+        "access_token_secret": "",
+        "consumer_key": "",
+        "consumer_secret": ""
+    }
+}

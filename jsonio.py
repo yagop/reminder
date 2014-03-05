@@ -20,4 +20,6 @@ def get(filename):
 		json_data.close()
 	except: 
 		print 'COULD NOT LOAD:', filename
+		print 'Rename config.json.example to config.json'
+		exit()
 	return get_data

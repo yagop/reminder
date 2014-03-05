@@ -13,6 +13,11 @@ consumer_secret = data["twitter"]["consumer_secret"]
 access_token = data["twitter"]["access_token"]
 access_token_secret = data["twitter"]["access_token_secret"]
 
+if consumer_key is None:
+	print "Consumer keys and Access tokens are necesary"
+	print "https://dev.twitter.com/docs/auth/tokens-devtwittercom"
+	print "Enable read and write permissions"
+
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 
