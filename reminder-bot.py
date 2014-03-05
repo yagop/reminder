@@ -1,0 +1,37 @@
+import tweepy
+import json 
+import simplejson
+import time
+import jsonio
+
+filename = "config.json"
+
+data = jsonio.get(filename)
+
+consumer_key = data["twitter"]["consumer_key"]
+consumer_secret = data["twitter"]["consumer_secret"]
+access_token = data["twitter"]["access_token"]
+access_token_secret = data["twitter"]["access_token_secret"]
+
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+
+api = tweepy.API(auth)
+
+
+print "Loged as: " + api.me().name
+
+while (1) :
+	time.sleep (10)
+	now = int (time.time())
+	for reminder in data["reminders"]:
+		time_on = reminder["last_time"] + reminder["repeat"]#repeat are seconds
+		if now > time_on:
+			message = reminder["message"] + " (" + str(reminder["count"]) + ")" 
+			print "Twitteando!"
+			reminder["last_time"] = now
+			reminder["count"] += 1
+			api.update_status(message)
+		else :
+			print "Demasiado rapido!"
+	jsonio.put(data, filename)
