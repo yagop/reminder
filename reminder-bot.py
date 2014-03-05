@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import tweepy
 import json 
 import simplejson
@@ -27,7 +28,6 @@ api = tweepy.API(auth)
 print "Loged as: " + api.me().name
 
 while (1) :
-	time.sleep (10)
 	now = int (time.time())
 	for reminder in data["reminders"]:
 		time_on = reminder["last_time"] + reminder["repeat"]#repeat are seconds
@@ -37,6 +37,8 @@ while (1) :
 			reminder["last_time"] = now
 			reminder["count"] += 1
 			api.update_status(message)
+			api.update_status('El Twitt anterior se repite cada '+str(reminder["repeat"])+' segundos. Última vez: '+str(reminder["last_time"]))
 		else :
-			print "Demasiado rapido!"
+			print "Demasiado rápido!"
 	jsonio.put(data, filename)
+	time.sleep (10)

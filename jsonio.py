@@ -1,6 +1,7 @@
 import simplejson
 import json
 from pprint import pprint
+import os.path
 
 def put(data, filename):
 	try:
@@ -13,13 +14,16 @@ def put(data, filename):
 		pass
  
 def get(filename):
+	if not os.path.isfile(filename):
+		print 'COULD NOT LOAD:', filename
+		print 'Rename config.json.example to config.json'
+		exit()
 	get_data = None
 	try:
 		json_data = open(filename)
 		get_data = json.load(json_data)
 		json_data.close()
 	except: 
-		print 'COULD NOT LOAD:', filename
-		print 'Rename config.json.example to config.json'
+		print 'Error parsing json'
 		exit()
 	return get_data
