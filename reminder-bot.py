@@ -37,7 +37,7 @@ while (1) :
 			reminder["last_time"] = now
 			reminder["count"] += 1
 			api.update_status(message)
-			api.update_status('El Twitt anterior se repite cada '+str(reminder["repeat"])+' segundos. Última vez: '+str(reminder["last_time"]))
+			api.update_status('El Twitt anterior se repite cada '+str(reminder["repeat"])+' segundos. Última vez: '+int (time.time()))
 		else :
 			print "Demasiado rápido!"
 	jsonio.put(data, filename)
