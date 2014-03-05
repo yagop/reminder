@@ -14,6 +14,10 @@ consumer_secret = data["twitter"]["consumer_secret"]
 access_token = data["twitter"]["access_token"]
 access_token_secret = data["twitter"]["access_token_secret"]
 
+for reminder in data["reminders"]:
+	reminder["count"] += 1
+	jsonio.put(data, filename)
+
 if consumer_key is None:
 	print "Consumer keys and Access tokens are necesary"
 	print "https://dev.twitter.com/docs/auth/tokens-devtwittercom"
@@ -23,8 +27,6 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
-
-
 print "Loged as: " + api.me().name
 
 while (1) :
