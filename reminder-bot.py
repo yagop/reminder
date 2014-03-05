@@ -30,14 +30,13 @@ print "Loged as: " + api.me().name
 while (1) :
 	now = int (time.time())
 	for reminder in data["reminders"]:
-		time_on = reminder["last_time"] + reminder["repeat"]#repeat are seconds
+		time_on = reminder["last_time"] + reminder["repeat"] #repeat are seconds
 		if now > time_on:
 			message = reminder["message"] + " (" + str(reminder["count"]) + ")" 
 			print "Twitteando!"
 			reminder["last_time"] = now
 			reminder["count"] += 1
 			api.update_status(message)
-			api.update_status('El Twitt anterior se repite cada '+str(reminder["repeat"])+' segundos. Última vez: '+str(int (time.time() ) ))
 		else:
 			print "Demasiado rápido!"
 	jsonio.put(data, filename)
